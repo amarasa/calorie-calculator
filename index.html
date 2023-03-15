@@ -5,26 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Protein and Calorie Calculator</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.17/dist/tailwind.min.css" rel="stylesheet">
-  <style>
-    /* Add the Malibu color scheme */
-    :root {
-      --malibu-50: #f0faff;
-      --malibu-100: #e0f4fe;
-      --malibu-200: #bae7fd;
-      --malibu-300: #7dd3fc;
-      --malibu-400: #38baf8;
-      --malibu-500: #0ea2e9;
-      --malibu-600: #0287c7;
-      --malibu-700: #036ea1;
-      --malibu-800: #075c85;
-      --malibu-900: #0c4e6e;
-    }
-  </style>
 </head>
 <body class="bg-gray-100">
   <div class="container mx-auto px-4 py-16">
     <div class="w-full max-w-md mx-auto bg-white p-8 rounded shadow">
-      <h1 class="text-3xl font-bold mb-4 text-malibu-600">Protein and Calorie Calculator</h1>
+      <h1 class="text-3xl font-bold mb-4" style="color: #0287c7">Protein and Calorie Calculator</h1>
       <form id="calculatorForm">
         <div class="mb-4">
           <label for="age" class="block">Age:</label>
@@ -62,18 +47,19 @@
         <div class="mb-4">
           <label for="goal" class="block">Goal:</label>
           <select id="goal" class="w-full mt-1 bg-gray-200 border border-gray-300 rounded py-2 px-3 appearance-none" required>
-            <option value="lose">Weight Loss</option>
-            <option value="maintain">Maintenance</option>
-            <option value="gain">Weight Gain</option>
-          </select>
-        </div>
-        <button type="submit" class="bg-malibu-500 hover:bg-malibu-600 text-white font-bold py-2 px-4 rounded mt-4">
-          Calculate
-        </button>
-      </form>
-      <div id="results" class="mt-4"></div>
+           
+        <option value="lose">Weight Loss</option>
+        <option value="maintain">Maintenance</option>
+        <option value="gain">Weight Gain</option>
+      </select>
     </div>
-  </div>
+    <button type="submit" style="background-color: #0ea2e9; color: #ffffff;" class="font-bold py-2 px-4 rounded mt-4 hover:bg-malibu-600">
+      Calculate
+    </button>
+  </form>
+  <div id="results" class="mt-4"></div>
+</div>
+     </div>
   <script src="script.js"></script>
 </body>
 </html>
