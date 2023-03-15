@@ -44,10 +44,48 @@ function calculateDailyCalories() {
 function displayResults() {
   const proteinIntake = calculateDailyProtein();
   const dailyCalories = calculateDailyCalories();
+  const caloriesForWeightLoss = dailyCalories - 500;
+  const caloriesForMaintenance = dailyCalories;
+  const caloriesForWeightGain = dailyCalories + 500;
+
   const resultsElement = document.getElementById("results");
   resultsElement.innerHTML = `
     <h2 class="text-2xl font-bold mb-2">Results</h2>
     <p>Daily protein intake: <strong>${proteinIntake.toFixed(2)} grams</strong></p>
-    <p>Daily calorie intake: <strong>${dailyCalories.toFixed(2)} calories</strong></p>
+    <table class="w-full table-auto">
+      <thead>
+        <tr>
+          <th class="border px-4 py-2">Goal</th>
+          <th class="border px-4 py-2">Calories</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="border px-4 py-2">Weight Loss</td>
+          <td class="border px-4 py-2 font-semibold">
+            ${goal === "lose" ? "<strong>" : ""}
+            ${caloriesForWeightLoss.toFixed(2)}
+            ${goal === "lose" ? "</strong>" : ""}
+          </td>
+        </tr>
+        <tr>
+          <td class="border px-4 py-2">Maintenance</td>
+          <td class="border px-4 py-2 font-semibold">
+            ${goal === "maintain" ? "<strong>" : ""}
+            ${caloriesForMaintenance.toFixed(2)}
+            ${goal === "maintain" ? "</strong>" : ""}
+          </td>
+        </tr>
+        <tr>
+          <td class="border px-4 py-2">Weight Gain</td>
+          <td class="border px-4 py-2 font-semibold">
+            ${goal === "gain" ? "<strong>" : ""}
+            ${caloriesForWeightGain.toFixed(2)}
+            ${goal === "gain" ? "</strong>" : ""}
+          </td>
+        </tr>
+      </tbody>
+    </table>
   `;
 }
+
