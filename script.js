@@ -340,8 +340,9 @@ function renderWeightChart(chartData) {
           time: {
             unit: "week",
             displayFormats: {
-              week: "MMM D",
+              week: "MMM d",
             },
+            parser: "yyyy-MM-dd",
           },
           ticks: {
             autoSkip: true,
@@ -353,6 +354,7 @@ function renderWeightChart(chartData) {
         },
       },
     },
+
   });
 }
 
