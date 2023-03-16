@@ -124,7 +124,7 @@ function displayResults() {
    const resultsElement = document.getElementById("results");
    resultsElement.innerHTML = `
      <h2 class="text-2xl font-bold mb-2">Results</h2>
-     <p>Daily protein intake: <strong>${proteinIntake.toFixed(2)} grams</strong></p>
+     <p>Daily protein intake: <strong>${proteinIntake} grams</strong></p>
      <table class="w-full table-auto">
        <thead>
          <tr>
@@ -136,7 +136,7 @@ function displayResults() {
          <tr>
            <td class="border px-4 py-2">Maintenance</td>
            <td class="border px-4 py-2 font-semibold">
-             <span style="color: gray;">${maintenanceCalories.toFixed(2)} (100%)</span>
+             <span style="color: gray;">${maintenanceCalories} (100%%)</span>
            </td>
          </tr>
          ${goalRows()}
