@@ -79,19 +79,19 @@ function displayResults() {
          <tr>
            <td class="border px-4 py-2">Mild Weight Loss (0.5 lb/week)</td>
            <td class="border px-4 py-2 font-semibold">
-             ${calculateCaloriesAndPercentage(-0.5).calories} (${calculateCaloriesAndPercentage(-0.5).percentage.toFixed(2)}%)
+             ${Math.round(calculateCaloriesAndPercentage(-0.5).calories)} (${calculateCaloriesAndPercentage(-0.5).percentage.toFixed(2)}%)
            </td>
          </tr>
          <tr>
            <td class="border px-4 py-2">Weight Loss (1 lb/week)</td>
            <td class="border px-4 py-2 font-semibold">
-             ${calculateCaloriesAndPercentage(-1).calories} (${calculateCaloriesAndPercentage(-1).percentage.toFixed(2)}%)
+             ${Math.round(calculateCaloriesAndPercentage(-1).calories)} (${calculateCaloriesAndPercentage(-1).percentage.toFixed(2)}%)
            </td>
          </tr>
          <tr>
            <td class="border px-4 py-2">Extreme Weight Loss (2 lb/week)</td>
            <td class="border px-4 py-2 font-semibold">
-             ${calculateCaloriesAndPercentage(-2).calories} (${calculateCaloriesAndPercentage(-2).percentage.toFixed(2)}%)
+             ${Math.round(calculateCaloriesAndPercentage(-2).calories)} (${calculateCaloriesAndPercentage(-2).percentage.toFixed(2)}%)
            </td>
          </tr>
        `;
@@ -100,19 +100,19 @@ function displayResults() {
          <tr>
            <td class="border px-4 py-2">Mild Weight Gain (0.5 lb/week)</td>
            <td class="border px-4 py-2 font-semibold">
-             ${calculateCaloriesAndPercentage(0.5).calories} (${calculateCaloriesAndPercentage(0.5).percentage.toFixed(2)}%)
+             ${Math.round(calculateCaloriesAndPercentage(0.5).calories)} (${calculateCaloriesAndPercentage(0.5).percentage.toFixed(2)}%)
            </td>
          </tr>
          <tr>
            <td class="border px-4 py-2">Weight Gain (1 lb/week)</td>
            <td class="border px-4 py-2 font-semibold">
-             ${calculateCaloriesAndPercentage(1).calories} (${calculateCaloriesAndPercentage(1).percentage.toFixed(2)}%)
+             ${Math.round(calculateCaloriesAndPercentage(1).calories)} (${calculateCaloriesAndPercentage(1).percentage.toFixed(2)}%)
            </td>
          </tr>
          <tr>
            <td class="border px-4 py-2">Extreme Weight Gain (2 lb/week)</td>
            <td class="border px-4 py-2 font-semibold">
-             ${calculateCaloriesAndPercentage(2).calories} (${calculateCaloriesAndPercentage(2).percentage.toFixed(2)}%)
+             ${Math.round(calculateCaloriesAndPercentage(2).calories)} (${calculateCaloriesAndPercentage(2).percentage.toFixed(2)}%)
            </td>
          </tr>
        `;
@@ -124,7 +124,7 @@ function displayResults() {
    const resultsElement = document.getElementById("results");
    resultsElement.innerHTML = `
      <h2 class="text-2xl font-bold mb-2">Results</h2>
-     <p>Daily protein intake: <strong>${proteinIntake} grams</strong></p>
+     <p>Daily protein intake: <strong>${Math.round(proteinIntake)} grams</strong></p>
      <table class="w-full table-auto">
        <thead>
          <tr>
@@ -136,7 +136,7 @@ function displayResults() {
          <tr>
            <td class="border px-4 py-2">Maintenance</td>
            <td class="border px-4 py-2 font-semibold">
-             <span style="color: gray;">${maintenanceCalories} (100%%)</span>
+             <span style="color: gray;">${Math.round(maintenanceCalories)} (100%)</span>
            </td>
          </tr>
          ${goalRows()}
