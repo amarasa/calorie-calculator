@@ -113,6 +113,60 @@ function displayResults() {
 
 document.getElementById("bodyWeightPlannerForm").addEventListener("submit", (e) => {
     e.preventDefault();
-    // Get user input, calculate results and display them
-    // Use a similar structure to your existing calculator
+
+    // Get user input
+    const currentWeight = parseFloat(document.getElementById("currentWeight").value);
+    const goalWeight = parseFloat(document.getElementById("goalWeight").value);
+    const gender = document.getElementById("gender").value;
+    const age = parseFloat(document.getElementById("age").value);
+    const heightFeet = parseFloat(document.getElementById("heightFeet").value);
+    const heightInches = parseFloat(document.getElementById("heightInches").value);
+    const activity = document.getElementById("activity").value;
+    const lbsPerWeek = parseFloat(document.getElementById("lbsPerWeek").value);
+    const startDate = document.getElementById("startDate").value;
+
+    // Calculate BMR using Mifflin-St Jeor equation
+    const height = (heightFeet * 12) + heightInches;
+    let bmr;
+
+    if (gender === "male") {
+        bmr = 10 * currentWeight + 6.25 * height - 5 * age + 5;
+    } else {
+        bmr = 10 * currentWeight + 6.25 * height - 5 * age - 161;
+    }
+
+    // Calculate TDEE
+    const activityMultipliers = {
+        sedentary: 1.2,
+        light: 1.375,
+        moderate: 1.55,
+        very_active: 1.725,
+        extra_active: 1.9
+    };
+
+    const tdee = bmr * activityMultipliers[activity];
+
+    // Calculate daily calorie deficit
+    const calorieDeficitPerLb = 3500;
+    const dailyCalorieDeficit = (lbsPerWeek * calorieDeficitPerLb) / 7;
+
+    // Calculate daily calorie intake
+    const dailyCalorieIntake = tdee - dailyCalorieDeficit;
+
+    // Calculate end date
+    const totalWeeks = (currentWeight - goalWeight) / lbsPerWeek;
+    const startDateObj = new Date(startDate);
+    const endDateObj = new Date(startDateObj.getTime() + (totalWeeks * 7 * 24 * 60 * 60 * 1000));
+    const endDate = endDateObj.toLocaleDateString();
+
+    // Display results
+    const resultsElement = document.getElementById("bodyWeightPlannerResults");
+    resultsElement.innerHTML = `
+        <h2 class="text-xl font-bold mb-2">Results</h2>
+        <p>Current Weight: ${currentWeight.toFixed(1)} lbs</p>
+        <p>Goal Weight: ${goalWeight.toFixed(1)} lbs</p>
+        <p>Daily Calorie Intake: ${dailyCalorieIntake.toFixed(0)} calories</p>
+        <p>Estimated End Date: ${endDate}</p>
+    `;
 });
+
