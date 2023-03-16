@@ -119,7 +119,7 @@ document.getElementById("bodyWeightPlannerForm").addEventListener("submit", (e) 
     const age = parseInt(document.getElementById("age").value);
     const heightFeet = parseFloat(document.getElementById("heightFeet").value);
     const heightInches = parseFloat(document.getElementById("heightInches").value);
-    const gender = document.getElementById("gender").value;
+    const gender = document.getElementById("genderBWP").value;
     const activity = document.getElementById("activity").value;
     const lbsPerWeek = parseFloat(document.getElementById("lbsPerWeek").value);
     const startDate = new Date(document.getElementById("startDate").value);
