@@ -271,6 +271,14 @@ document.getElementById("bodyWeightPlannerForm").addEventListener("submit", (e) 
         <p>To reach your goal, you should consume approximately <strong>${dailyCalorieIntake} calories</strong> per day.</p>
         <p>Your estimated end date is <strong>${formattedEndDate}</strong>.</p>
       `;
+        
+        const chartData = generateWeightChartData(
+        new Date(startDate),
+        currentWeight,
+        goalWeight,
+        lbsPerWeek
+      );
+      renderWeightChart(chartData);
     }
 
     function ordinalSuffix(day) {
@@ -286,6 +294,67 @@ document.getElementById("bodyWeightPlannerForm").addEventListener("submit", (e) 
 
       return day + suffix;
     }
+
+    
+    function generateWeightChartData(startDate, currentWeight, goalWeight, lbsPerWeek) {
+  const weeksToReachGoal = Math.abs(currentWeight - goalWeight) / lbsPerWeek;
+  const weightChangePerWeek = lbsPerWeek * (currentWeight > goalWeight ? -1 : 1);
+  const labels = [];
+  const data = [];
+
+  for (let i = 0; i <= weeksToReachGoal; i++) {
+    const currentDate = new Date(startDate);
+    currentDate.setDate(startDate.getDate() + i * 7);
+    labels.push(currentDate.toISOString().slice(0, 10));
+
+    const currentWeekWeight = currentWeight + i * weightChangePerWeek;
+    data.push(currentWeekWeight);
+  }
+
+  return { labels, data };
+}
+
+function renderWeightChart(chartData) {
+  const ctx = document.getElementById("weightChart").getContext("2d");
+
+  new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: chartData.labels,
+      datasets: [
+        {
+          label: "Weight (lbs)",
+          data: chartData.data,
+          borderColor: "rgba(75, 192, 192, 1)",
+          backgroundColor: "rgba(75, 192, 192, 0.2)",
+          borderWidth: 2,
+          pointRadius: 3,
+          pointBackgroundColor: "rgba(75, 192, 192, 1)",
+        },
+      ],
+    },
+    options: {
+      scales: {
+        x: {
+          type: "time",
+          time: {
+            unit: "week",
+            displayFormats: {
+              week: "MMM D",
+            },
+          },
+          ticks: {
+            autoSkip: true,
+            maxTicksLimit: 20,
+          },
+        },
+        y: {
+          beginAtZero: false,
+        },
+      },
+    },
+  });
+}
 
     displayBodyWeightPlannerResults(calorieIntakeToReachGoal, estimatedEndDate);
 });
