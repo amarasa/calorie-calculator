@@ -66,9 +66,62 @@ function calculateDailyCalories() {
 function displayResults() {
   const proteinIntake = calculateDailyProtein();
   const dailyCalories = calculateDailyCalories();
-  const caloriesForWeightLoss = dailyCalories - 500;
-  const caloriesForMaintenance = dailyCalories;
-  const caloriesForWeightGain = dailyCalories + 500;
+  const maintenanceCalories = dailyCalories;
+
+  const calculateCaloriesAndPercentage = (lbsPerWeek) => {
+    const caloriesPerLb = 3500;
+    const calories = dailyCalories + (lbsPerWeek * caloriesPerLb) / 7;
+    const percentage = (calories / maintenanceCalories) * 100;
+    return { calories, percentage };
+  };
+
+  const goalRows = () => {
+    if (window.goal === 'lose') {
+      return `
+        <tr>
+          <td class="border px-4 py-2">Mild Weight Loss (0.5 lb/week)</td>
+          <td class="border px-4 py-2 font-semibold">
+            ${calculateCaloriesAndPercentage(-0.5).calories.toFixed(2)} (${calculateCaloriesAndPercentage(-0.5).percentage.toFixed(2)}%)
+          </td>
+        </tr>
+        <tr>
+          <td class="border px-4 py-2">Weight Loss (1 lb/week)</td>
+          <td class="border px-4 py-2 font-semibold">
+            ${calculateCaloriesAndPercentage(-1).calories.toFixed(2)} (${calculateCaloriesAndPercentage(-1).percentage.toFixed(2)}%)
+          </td>
+        </tr>
+        <tr>
+          <td class="border px-4 py-2">Extreme Weight Loss (2 lb/week)</td>
+          <td class="border px-4 py-2 font-semibold">
+            ${calculateCaloriesAndPercentage(-2).calories.toFixed(2)} (${calculateCaloriesAndPercentage(-2).percentage.toFixed(2)}%)
+          </td>
+        </tr>
+      `;
+    } else if (window.goal === 'gain') {
+      return `
+        <tr>
+          <td class="border px-4 py-2">Mild Weight Gain (0.5 lb/week)</td>
+          <td class="border px-4 py-2 font-semibold">
+            ${calculateCaloriesAndPercentage(0.5).calories.toFixed(2)} (${calculateCaloriesAndPercentage(0.5).percentage.toFixed(2)}%)
+          </td>
+        </tr>
+        <tr>
+          <td class="border px-4 py-2">Weight Gain (1 lb/week)</td>
+          <td class="border px-4 py-2 font-semibold">
+            ${calculateCaloriesAndPercentage(1).calories.toFixed(2)} (${calculateCaloriesAndPercentage(1).percentage.toFixed(2)}%)
+          </td>
+        </tr>
+        <tr>
+          <td class="border px-4 py-2">Extreme Weight Gain (2 lb/week)</td>
+          <td class="border px-4 py-2 font-semibold">
+            ${calculateCaloriesAndPercentage(2).calories.toFixed(2)} (${calculateCaloriesAndPercentage(2).percentage.toFixed(2)}%)
+          </td>
+        </tr>
+      `;
+    } else {
+      return '';
+    }
+  };
 
   const resultsElement = document.getElementById("results");
   resultsElement.innerHTML = `
@@ -83,33 +136,17 @@ function displayResults() {
       </thead>
       <tbody>
         <tr>
-          <td class="border px-4 py-2">Weight Loss</td>
-          <td class="border px-4 py-2 font-semibold">
-            ${goal === "lose" ? "<strong>" : ""}
-            ${caloriesForWeightLoss.toFixed(2)}
-            ${goal === "lose" ? "</strong>" : ""}
-          </td>
-        </tr>
-        <tr>
           <td class="border px-4 py-2">Maintenance</td>
           <td class="border px-4 py-2 font-semibold">
-            ${goal === "maintain" ? "<strong>" : ""}
-            ${caloriesForMaintenance.toFixed(2)}
-            ${goal === "maintain" ? "</strong>" : ""}
+            <span style="color: gray;">${maintenanceCalories.toFixed(2)} (100%)</span>
           </td>
         </tr>
-        <tr>
-          <td class="border px-4 py-2">Weight Gain</td>
-          <td class="border px-4 py-2 font-semibold">
-            ${goal === "gain" ? "<strong>" : ""}
-            ${caloriesForWeightGain.toFixed(2)}
-            ${goal === "gain" ? "</strong>" : ""}
-          </td>
-        </tr>
+        ${goalRows()}
       </tbody>
     </table>
   `;
 }
+
 
 
 document.getElementById("bodyWeightPlannerForm").addEventListener("submit", (e) => {
