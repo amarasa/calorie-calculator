@@ -16,6 +16,10 @@ function getUserInput() {
 
 function calculateDailyProtein() {
   const proteinFactor = 0.8;
+  console.log('pFactor', proteinFactor);
+  
+  console.log('weight', window.weight);
+  console.log('results', window.weight * proteinFactor);
   return window.weight * proteinFactor;
 }
 
