@@ -15,20 +15,14 @@ function getUserInput() {
 }
 
 function calculateDailyProtein() {
-  const weightInKg = window.weight * 0.453592; // Convert lbs to kg
-  const proteinFactors = {
-    lose: 1.2,
-    maintain: 1.6,
-    gain: 2.2
-  };
-  return weightInKg * proteinFactors[goal];
+  const proteinFactor = 0.8;
+  return window.weight * proteinFactor;
 }
 
 function calculateDailyCalories() {
-  const weightInKg = window.weight * 0.453592; // Convert lbs to kg
   const heightInCm = (window.heightFeet * 12 + window.heightInches) * 2.54; // Convert feet and inches to cm
   const BMR =
-    (10 * weightInKg) +
+    (10 * window.weight * 0.453592) + // Use lbs to kg conversion only in this calculation
     (6.25 * heightInCm) -
     (5 * age) +
     (gender === "male" ? 5 : -161);
