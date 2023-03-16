@@ -10,19 +10,9 @@ function getUserInput() {
   window.heightFeet = parseFloat(document.getElementById("heightFeet").value);
   window.heightInches = parseFloat(document.getElementById("heightInches").value);
   window.gender = document.getElementById("gender").value;
-  
-  const activityLevels = {
-    "Sedentary": "sedentary",
-    "Lightly active": "light",
-    "Moderately active": "moderate",
-    "Very active": "very_active",
-    "Extra active": "extra_active",
-  };
-  
-  window.activity = activityLevels[document.getElementById("activity").value];
+  window.activity = document.getElementById("activity").value;
   window.goal = document.getElementById("goal").value;
 }
-
 
 function calculateDailyProtein() {
   const proteinFactors = {
@@ -33,28 +23,26 @@ function calculateDailyProtein() {
     extra_active: 1.8,
   };
 
-  const proteinPerPound = proteinFactors[window.activity];
+  const proteinPerPound = proteinFactors[activity];
   const proteinIntake = window.weight * proteinPerPound;
 
   return proteinIntake;
 }
 
-
 function calculateDailyCalories() {
-  const weightInKg = window.weight * 0.453592; // Convert lbs to kg
-  const heightInCm = (window.heightFeet * 12 + window.heightInches) * 2.54; // Convert feet and inches to cm
-  const BMR = (gender === "male")
-    ? 66.5 + (13.75 * weightInKg) + (5.003 * heightInCm) - (6.75 * age)
-    : 655.1 + (9.563 * weightInKg) + (1.850 * heightInCm) - (4.676 * age);
-const activityMultipliers = {
-  sedentary: 1.2,
-  light: 1.375,
-  moderate: 1.55,
-  very_active: 1.725,
-  extra_active: 1.9
-};
-
-  const adjustedBMR = BMR * activityMultipliers[window.activity];
+  const weightInKg = window.weight * 0.453592;
+  const heightInCm = (window.heightFeet * 12 + window.heightInches) * 2.54;
+  const BMR = (window.gender === "male")
+    ? 66.5 + (13.75 * weightInKg) + (5.003 * heightInCm) - (6.75 * window.age)
+    : 655.1 + (9.563 * weightInKg) + (1.850 * heightInCm) - (4.676 * window.age);
+  const activityMultipliers = {
+    sedentary: 1.2,
+    light: 1.375,
+    moderate: 1.55,
+    very_active: 1.725,
+    extra_active: 1.9
+  };
+  const adjustedBMR = BMR * activityMultipliers[activity];
   const goalCalories = {
     lose: -500,
     maintain: 0,
@@ -62,7 +50,6 @@ const activityMultipliers = {
   };
   return adjustedBMR + goalCalories[goal];
 }
-
 
 function displayResults() {
   const proteinIntake = calculateDailyProtein();
@@ -111,4 +98,3 @@ function displayResults() {
     </table>
   `;
 }
-
