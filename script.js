@@ -10,9 +10,19 @@ function getUserInput() {
   window.heightFeet = parseFloat(document.getElementById("heightFeet").value);
   window.heightInches = parseFloat(document.getElementById("heightInches").value);
   window.gender = document.getElementById("gender").value;
-  window.activity = document.getElementById("activity").value;
+  
+  const activityLevels = {
+    "Sedentary": "sedentary",
+    "Lightly active": "light",
+    "Moderately active": "moderate",
+    "Very active": "very_active",
+    "Extra active": "extra_active",
+  };
+  
+  window.activity = activityLevels[document.getElementById("activity").value];
   window.goal = document.getElementById("goal").value;
 }
+
 
 function calculateDailyProtein() {
   const proteinFactors = {
