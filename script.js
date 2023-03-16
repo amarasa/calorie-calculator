@@ -160,7 +160,7 @@ function displayResults() {
             <div>Maintenance</div>
           </td>
           <td class="border px-4 py-2">
-            <div class="font-semibold text-lg">${numberWithCommas(calories)} <span class="font-normal">(${percentage}%)</span></div>
+            <div class="font-semibold text-lg">${numberWithCommas(calories)} <span class="font-normal text-sm">(${percentage}%)</span></div>
             <div class="text-sm text-gray-600">Calories/day</div>
           </td>
         </tr>
