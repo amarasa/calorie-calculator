@@ -36,13 +36,14 @@ function calculateDailyCalories() {
   const BMR = (gender === "male")
     ? 66.5 + (13.75 * weightInKg) + (5.003 * heightInCm) - (6.75 * age)
     : 655.1 + (9.563 * weightInKg) + (1.850 * heightInCm) - (4.676 * age);
-  const activityMultipliers = {
-    sedentary: 1.2,
-    lightly_active: 1.375,
-    moderately_active: 1.55,
-    very_active: 1.725,
-    extra_active: 1.9
-  };
+const activityMultipliers = {
+  sedentary: 1.2,
+  light: 1.375,
+  moderate: 1.55,
+  very_active: 1.725,
+  extra_active: 1.9
+};
+
   const adjustedBMR = BMR * activityMultipliers[window.activity];
   const goalCalories = {
     lose: -500,
