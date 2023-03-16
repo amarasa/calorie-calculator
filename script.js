@@ -144,8 +144,9 @@ document.getElementById("bodyWeightPlannerForm").addEventListener("submit", (e) 
     }
 
     function calculateTDEE(bmr, activityMultiplier) {
-      return Math.round(bmr * activityMultiplier);
+        return Math.round(bmr * parseFloat(activityMultiplier));
     }
+
     
     function calculateCalorieIntakeToReachGoal(tdee, lbsPerWeek, goal) {
       const caloriesPerLb = 3500;
