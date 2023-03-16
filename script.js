@@ -83,7 +83,7 @@ function displayResults() {
               <div class="text-sm text-gray-600">(0.5 lb/week)</div>
             </td>
             <td class="border px-4 py-2">
-              <div class="font-semibold text-lg">${numberWithCommas(Math.round(calculateCaloriesAndPercentage(-0.5).calories))} <span class="font-normal">(${calculateCaloriesAndPercentage(-0.5).percentage.toFixed(2)}%)</span></div>
+              <div class="font-semibold text-lg">${numberWithCommas(Math.round(calculateCaloriesAndPercentage(-0.5).calories))} <span class="font-normal text-sm">(${calculateCaloriesAndPercentage(-0.5).percentage.toFixed(2)}%)</span></div>
               <div class="text-sm text-gray-600">Calories/day</div>
             </td>
           </tr>
@@ -93,7 +93,7 @@ function displayResults() {
               <div class="text-sm text-gray-600">(1 lb/week)</div>
             </td>
             <td class="border px-4 py-2">
-              <div class="font-semibold text-lg">${numberWithCommas(Math.round(calculateCaloriesAndPercentage(-1).calories))} <span class="font-normal">(${calculateCaloriesAndPercentage(-1).percentage.toFixed(2)}%)</span></div>
+              <div class="font-semibold text-lg">${numberWithCommas(Math.round(calculateCaloriesAndPercentage(-1).calories))} <span class="font-normal text-sm">(${calculateCaloriesAndPercentage(-1).percentage.toFixed(2)}%)</span></div>
               <div class="text-sm text-gray-600">Calories/day</div>
             </td>
           </tr>
@@ -103,32 +103,44 @@ function displayResults() {
               <div class="text-sm text-gray-600">(2 lb/week)</div>
             </td>
             <td class="border px-4 py-2">
-              <div class="font-semibold text-lg">${numberWithCommas(Math.round(calculateCaloriesAndPercentage(-2).calories))} <span class="font-normal">(${calculateCaloriesAndPercentage(-2).percentage.toFixed(2)}%)</span></div>
+              <div class="font-semibold text-lg">${numberWithCommas(Math.round(calculateCaloriesAndPercentage(-2).calories))} <span class="font-normal text-sm">(${calculateCaloriesAndPercentage(-2).percentage.toFixed(2)}%)</span></div>
               <div class="text-sm text-gray-600">Calories/day</div>
             </td>
           </tr>
         `;
      } else if (window.goal === 'gain') {
-       return `
-         <tr>
-           <td class="border px-4 py-2">Mild Weight Gain (0.5 lb/week)</td>
-           <td class="border px-4 py-2 font-semibold">
-             ${Math.round(calculateCaloriesAndPercentage(0.5).calories)} (${calculateCaloriesAndPercentage(0.5).percentage.toFixed(2)}%)
-           </td>
-         </tr>
-         <tr>
-           <td class="border px-4 py-2">Weight Gain (1 lb/week)</td>
-           <td class="border px-4 py-2 font-semibold">
-             ${Math.round(calculateCaloriesAndPercentage(1).calories)} (${calculateCaloriesAndPercentage(1).percentage.toFixed(2)}%)
-           </td>
-         </tr>
-         <tr>
-           <td class="border px-4 py-2">Extreme Weight Gain (2 lb/week)</td>
-           <td class="border px-4 py-2 font-semibold">
-             ${Math.round(calculateCaloriesAndPercentage(2).calories)} (${calculateCaloriesAndPercentage(2).percentage.toFixed(2)}%)
-           </td>
-         </tr>
-       `;
+        return `
+          <tr>
+            <td class="border px-4 py-2">
+              <div>Mild Weight Gain</div>
+              <div class="text-sm text-gray-600">(0.5 lb/week)</div>
+            </td>
+            <td class="border px-4 py-2">
+              <div class="font-semibold text-lg">${numberWithCommas(Math.round(calculateCaloriesAndPercentage(0.5).calories))} <span class="font-normal text-sm">(${calculateCaloriesAndPercentage(0.5).percentage.toFixed(2)}%)</span></div>
+              <div class="text-sm text-gray-600">Calories/day</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="border px-4 py-2">
+              <div>Weight Gain</div>
+              <div class="text-sm text-gray-600">(1 lb/week)</div>
+            </td>
+            <td class="border px-4 py-2">
+              <div class="font-semibold text-lg">${numberWithCommas(Math.round(calculateCaloriesAndPercentage(1).calories))} <span class="font-normal text-sm">(${calculateCaloriesAndPercentage(1).percentage.toFixed(2)}%)</span></div>
+              <div class="text-sm text-gray-600">Calories/day</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="border px-4 py-2">
+              <div>Extreme Weight Gain</div>
+              <div class="text-sm text-gray-600">(2 lb/week)</div>
+            </td>
+            <td class="border px-4 py-2">
+              <div class="font-semibold text-lg">${numberWithCommas(Math.round(calculateCaloriesAndPercentage(2).calories))} <span class="font-normal text-sm">(${calculateCaloriesAndPercentage(2).percentage.toFixed(2)}%)</span></div>
+              <div class="text-sm text-gray-600">Calories/day</div>
+            </td>
+          </tr>
+        `;
      } else {
        return '';
      }
@@ -138,28 +150,41 @@ function displayResults() {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
-   const resultsElement = document.getElementById("results");
-   resultsElement.innerHTML = `
-     <h2 class="text-2xl font-bold mb-2">Results</h2>
-     <p>Daily protein intake: <strong>${Math.round(proteinIntake)} grams</strong></p>
-     <table class="w-full table-auto">
-       <thead>
-         <tr>
-           <th class="border px-4 py-2">Goal</th>
-           <th class="border px-4 py-2">Calories</th>
-         </tr>
-       </thead>
-       <tbody>
-         <tr>
-           <td class="border px-4 py-2">Maintenance</td>
-           <td class="border px-4 py-2 font-semibold">
-             <span style="color: gray;">${Math.round(maintenanceCalories)} (100%)</span>
-           </td>
-         </tr>
-         ${goalRows()}
-       </tbody>
-     </table>
-   `;
+    const maintenanceRow = () => {
+      const calories = Math.round(maintenanceCalories);
+      const percentage = 100;
+
+      return `
+        <tr>
+          <td class="border px-4 py-2">
+            <div>Maintenance</div>
+          </td>
+          <td class="border px-4 py-2">
+            <div class="font-semibold text-lg">${numberWithCommas(calories)} <span class="font-normal">(${percentage}%)</span></div>
+            <div class="text-sm text-gray-600">Calories/day</div>
+          </td>
+        </tr>
+      `;
+    };
+
+    const resultsElement = document.getElementById("results");
+    resultsElement.innerHTML = `
+      <h2 class="text-2xl font-bold mb-2">Results</h2>
+      <p class="mb-4">Daily protein intake: <strong>${Math.round(proteinIntake)} grams</strong></p>
+      <table class="w-full table-auto">
+        <thead>
+          <tr>
+            <th class="border px-4 py-2">Goal</th>
+            <th class="border px-4 py-2">Calories</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${maintenanceRow()}
+          ${goalRows()}
+        </tbody>
+      </table>
+    `;
+
  }
 
 
