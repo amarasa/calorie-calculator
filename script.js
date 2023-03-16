@@ -79,19 +79,19 @@ function displayResults() {
          <tr>
            <td class="border px-4 py-2">Mild Weight Loss (0.5 lb/week)</td>
            <td class="border px-4 py-2 font-semibold">
-             ${calculateCaloriesAndPercentage(-0.5).calories.toFixed(2)} (${calculateCaloriesAndPercentage(-0.5).percentage.toFixed(2)}%)
+             ${calculateCaloriesAndPercentage(-0.5).calories} (${calculateCaloriesAndPercentage(-0.5).percentage.toFixed(2)}%)
            </td>
          </tr>
          <tr>
            <td class="border px-4 py-2">Weight Loss (1 lb/week)</td>
            <td class="border px-4 py-2 font-semibold">
-             ${calculateCaloriesAndPercentage(-1).calories.toFixed(2)} (${calculateCaloriesAndPercentage(-1).percentage.toFixed(2)}%)
+             ${calculateCaloriesAndPercentage(-1).calories} (${calculateCaloriesAndPercentage(-1).percentage.toFixed(2)}%)
            </td>
          </tr>
          <tr>
            <td class="border px-4 py-2">Extreme Weight Loss (2 lb/week)</td>
            <td class="border px-4 py-2 font-semibold">
-             ${calculateCaloriesAndPercentage(-2).calories.toFixed(2)} (${calculateCaloriesAndPercentage(-2).percentage.toFixed(2)}%)
+             ${calculateCaloriesAndPercentage(-2).calories} (${calculateCaloriesAndPercentage(-2).percentage.toFixed(2)}%)
            </td>
          </tr>
        `;
@@ -100,19 +100,19 @@ function displayResults() {
          <tr>
            <td class="border px-4 py-2">Mild Weight Gain (0.5 lb/week)</td>
            <td class="border px-4 py-2 font-semibold">
-             ${calculateCaloriesAndPercentage(0.5).calories.toFixed(2)} (${calculateCaloriesAndPercentage(0.5).percentage.toFixed(2)}%)
+             ${calculateCaloriesAndPercentage(0.5).calories} (${calculateCaloriesAndPercentage(0.5).percentage.toFixed(2)}%)
            </td>
          </tr>
          <tr>
            <td class="border px-4 py-2">Weight Gain (1 lb/week)</td>
            <td class="border px-4 py-2 font-semibold">
-             ${calculateCaloriesAndPercentage(1).calories.toFixed(2)} (${calculateCaloriesAndPercentage(1).percentage.toFixed(2)}%)
+             ${calculateCaloriesAndPercentage(1).calories} (${calculateCaloriesAndPercentage(1).percentage.toFixed(2)}%)
            </td>
          </tr>
          <tr>
            <td class="border px-4 py-2">Extreme Weight Gain (2 lb/week)</td>
            <td class="border px-4 py-2 font-semibold">
-             ${calculateCaloriesAndPercentage(2).calories.toFixed(2)} (${calculateCaloriesAndPercentage(2).percentage.toFixed(2)}%)
+             ${calculateCaloriesAndPercentage(2).calories} (${calculateCaloriesAndPercentage(2).percentage.toFixed(2)}%)
            </td>
          </tr>
        `;
