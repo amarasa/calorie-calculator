@@ -76,19 +76,38 @@ function displayResults() {
 
    const goalRows = () => {
      if (window.goal === 'lose') {
-       return `
-             <tr>
+        return `
+          <tr>
             <td class="border px-4 py-2">
               <div>Mild Weight Loss</div>
               <div class="text-sm text-gray-600">(0.5 lb/week)</div>
             </td>
             <td class="border px-4 py-2">
-              <div class="font-semibold text-lg">${Math.round(calculateCaloriesAndPercentage(-0.5).calories)}</div>
-              <div class="text-sm text-gray-600">(${calculateCaloriesAndPercentage(-0.5).percentage.toFixed(2)}%)</div>
+              <div class="font-semibold text-lg">${numberWithCommas(Math.round(calculateCaloriesAndPercentage(-0.5).calories))} <span class="font-normal">(${calculateCaloriesAndPercentage(-0.5).percentage.toFixed(2)}%)</span></div>
               <div class="text-sm text-gray-600">Calories/day</div>
             </td>
           </tr>
-       `;
+          <tr>
+            <td class="border px-4 py-2">
+              <div>Weight Loss</div>
+              <div class="text-sm text-gray-600">(1 lb/week)</div>
+            </td>
+            <td class="border px-4 py-2">
+              <div class="font-semibold text-lg">${numberWithCommas(Math.round(calculateCaloriesAndPercentage(-1).calories))} <span class="font-normal">(${calculateCaloriesAndPercentage(-1).percentage.toFixed(2)}%)</span></div>
+              <div class="text-sm text-gray-600">Calories/day</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="border px-4 py-2">
+              <div>Extreme Weight Loss</div>
+              <div class="text-sm text-gray-600">(2 lb/week)</div>
+            </td>
+            <td class="border px-4 py-2">
+              <div class="font-semibold text-lg">${numberWithCommas(Math.round(calculateCaloriesAndPercentage(-2).calories))} <span class="font-normal">(${calculateCaloriesAndPercentage(-2).percentage.toFixed(2)}%)</span></div>
+              <div class="text-sm text-gray-600">Calories/day</div>
+            </td>
+          </tr>
+        `;
      } else if (window.goal === 'gain') {
        return `
          <tr>
@@ -114,6 +133,10 @@ function displayResults() {
        return '';
      }
    };
+    
+    function numberWithCommas(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
 
    const resultsElement = document.getElementById("results");
    resultsElement.innerHTML = `
