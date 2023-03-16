@@ -48,12 +48,13 @@ function calculateDailyCalories() {
     ? (10 * weightInKg) + (6.25 * heightInCm) - (5 * window.age) + 5
     : (10 * weightInKg) + (6.25 * heightInCm) - (5 * window.age) - 161;
   const activityMultipliers = {
-      sedentary: 1.2,
-      light: 1.375,
-      moderate: 1.55,
-      very_active: 1.725,
-      extra_active: 1.9
+      sedentary: 1.117,
+      light: 1.279,
+      moderate: 1.364,
+      very_active: 1.605,
+      extra_active: 1.768,
     };
+
 
   const adjustedBMR = BMR * activityMultipliers[activity];
   
