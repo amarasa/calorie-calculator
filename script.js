@@ -20,13 +20,19 @@ function calculateDailyProtein() {
 }
 
 function calculateDailyCalories() {
+  const weightInKg = window.weight * 0.453592; // Convert lbs to kg
   const heightInCm = (window.heightFeet * 12 + window.heightInches) * 2.54; // Convert feet and inches to cm
-  const BMR =
-    (10 * window.weight * 0.453592) + // Use lbs to kg conversion only in this calculation
-    (6.25 * heightInCm) -
-    (5 * age) +
-    (gender === "male" ? 5 : -161);
-  const adjustedBMR = BMR * activity;
+  const BMR = (gender === "male")
+    ? 66.5 + (13.75 * weightInKg) + (5.003 * heightInCm) - (6.75 * age)
+    : 655.1 + (9.563 * weightInKg) + (1.850 * heightInCm) - (4.676 * age);
+  const activityMultipliers = {
+    sedentary: 1.2,
+    lightly_active: 1.375,
+    moderately_active: 1.55,
+    very_active: 1.725,
+    extra_active: 1.9
+  };
+  const adjustedBMR = BMR * activityMultipliers[activity];
   const goalCalories = {
     lose: -500,
     maintain: 0,
@@ -34,6 +40,7 @@ function calculateDailyCalories() {
   };
   return adjustedBMR + goalCalories[goal];
 }
+
 
 function displayResults() {
   const proteinIntake = calculateDailyProtein();
