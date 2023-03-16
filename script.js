@@ -45,8 +45,8 @@ function calculateDailyCalories() {
   const weightInKg = window.weight * 0.453592;
   const heightInCm = (window.heightFeet * 12 + window.heightInches) * 2.54;
   const BMR = (window.gender === "male")
-    ? 66.5 + (13.75 * weightInKg) + (5.003 * heightInCm) - (6.75 * window.age)
-    : 655.1 + (9.563 * weightInKg) + (1.850 * heightInCm) - (4.676 * window.age);
+    ? (10 * weightInKg) + (6.25 * heightInCm) - (5 * window.age) + 5
+    : (10 * weightInKg) + (6.25 * heightInCm) - (5 * window.age) - 161;
   const activityMultipliers = {
     sedentary: 1.2,
     light: 1.375,
@@ -58,6 +58,7 @@ function calculateDailyCalories() {
   
   return adjustedBMR;
 }
+
 
 function displayResults() {
    const proteinIntake = calculateDailyProtein();
