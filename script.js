@@ -122,13 +122,77 @@ document.getElementById("bodyWeightPlannerForm").addEventListener("submit", (e) 
     const heightInches = parseInt(document.getElementById("bwpheightInches").value);
     const activity = document.getElementById("bwpactivity").value;
     const lbsPerWeek = parseFloat(document.getElementById("lbsPerWeek").value);
+    const goal = document.getElementById("bwpgainlose").value;
     const startDate = document.getElementById("startDate").value;
 
     const height = heightFeet * 12 + heightInches;
     const bmr = calculateBMR(gender, age, height, currentWeight);
     const tdee = calculateTDEE(bmr, activity);
-    const calorieIntakeToReachGoal = calculateCalorieIntakeToReachGoal(tdee, currentWeight, goalWeight, lbsPerWeek);
-    const estimatedEndDate = calculateEstimatedEndDate(startDate, currentWeight, goalWeight, lbsPerWeek);
+    const calorieIntakeToReachGoal = calculateCalorieIntakeToReachGoal(tdee, lbsPerWeek, goal);
+    const estimatedEndDate = calculateEstimatedEndDate(new Date(startDate), currentWeight, goalWeight, lbsPerWeek);
+
+    function calculateBMR(gender, age, height, weight) {
+      let bmr;
+
+      if (gender === "male") {
+        bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+      } else if (gender === "female") {
+        bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+      }
+
+      return bmr;
+    }
+
+    function calculateTDEE(bmr, activityMultiplier) {
+      return Math.round(bmr * activityMultiplier);
+    }
+    
+    function calculateCalorieIntakeToReachGoal(tdee, lbsPerWeek, goal) {
+      const caloriesPerLb = 3500;
+      const calorieDifference = lbsPerWeek * caloriesPerLb;
+
+      if (goal === "lose") {
+        return Math.round(tdee - calorieDifference / 7);
+      } else if (goal === "gain") {
+        return Math.round(tdee + calorieDifference / 7);
+      } else {
+        return tdee;
+      }
+    }
+
+    function calculateEstimatedEndDate(startDate, currentWeight, goalWeight, lbsPerWeek) {
+      const weeksToReachGoal = Math.abs(currentWeight - goalWeight) / lbsPerWeek;
+      const endDate = new Date(startDate);
+      endDate.setDate(startDate.getDate() + weeksToReachGoal * 7);
+      return endDate;
+    }
+
+    function displayBodyWeightPlannerResults(dailyCalorieIntake, estimatedEndDate) {
+      const resultsElement = document.getElementById("bodyWeightPlannerResults");
+      const formattedEndDate = `${estimatedEndDate.toLocaleString("en-us", {
+        month: "long",
+      })} ${ordinalSuffix(estimatedEndDate.getDate())}, ${estimatedEndDate.getFullYear()}`;
+
+      resultsElement.innerHTML = `
+        <h2 class="text-xl font-bold mb-2">Results:</h2>
+        <p>To reach your goal, you should consume approximately <strong>${dailyCalorieIntake} calories</strong> per day.</p>
+        <p>Your estimated end date is <strong>${formattedEndDate}</strong>.</p>
+      `;
+    }
+
+    function ordinalSuffix(day) {
+      let suffix = "th";
+
+      if (day % 10 === 1 && day % 100 !== 11) {
+        suffix = "st";
+      } else if (day % 10 === 2 && day % 100 !== 12) {
+        suffix = "nd";
+      } else if (day % 10 === 3 && day % 100 !== 13) {
+        suffix = "rd";
+      }
+
+      return day + suffix;
+    }
 
     displayBodyWeightPlannerResults(calorieIntakeToReachGoal, estimatedEndDate);
 });
