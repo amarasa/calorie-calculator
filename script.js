@@ -22,8 +22,9 @@ function getUserInput() {
   window.heightInches = parseFloat(document.getElementById("heightInches").value);
   window.gender = document.getElementById("gender").value;
   window.activity = document.getElementById("activity").value;
-  window.goal = document.getElementById("goal").value;
+  window.goal = document.getElementById("bwpgainlose").value;
 }
+
 
 function calculateDailyProtein() {
   const proteinFactors = {
