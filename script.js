@@ -23,7 +23,7 @@ function calculateDailyProtein() {
     extra_active: 1.8,
   };
 
-  const proteinPerPound = proteinFactors[activity];
+  const proteinPerPound = proteinFactors[window.activity];
   const proteinIntake = window.weight * proteinPerPound;
 
   return proteinIntake;
@@ -43,7 +43,7 @@ function calculateDailyCalories() {
     very_active: 1.725,
     extra_active: 1.9
   };
-  const adjustedBMR = BMR * activityMultipliers[activity];
+  const adjustedBMR = BMR * activityMultipliers[window.activity];
   const goalCalories = {
     lose: -500,
     maintain: 0,
