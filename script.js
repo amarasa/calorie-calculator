@@ -77,24 +77,17 @@ function displayResults() {
    const goalRows = () => {
      if (window.goal === 'lose') {
        return `
-         <tr>
-           <td class="border px-4 py-2">Mild Weight Loss (0.5 lb/week)</td>
-           <td class="border px-4 py-2 font-semibold">
-             ${Math.round(calculateCaloriesAndPercentage(-0.5).calories)} (${calculateCaloriesAndPercentage(-0.5).percentage.toFixed(2)}%)
-           </td>
-         </tr>
-         <tr>
-           <td class="border px-4 py-2">Weight Loss (1 lb/week)</td>
-           <td class="border px-4 py-2 font-semibold">
-             ${Math.round(calculateCaloriesAndPercentage(-1).calories)} (${calculateCaloriesAndPercentage(-1).percentage.toFixed(2)}%)
-           </td>
-         </tr>
-         <tr>
-           <td class="border px-4 py-2">Extreme Weight Loss (2 lb/week)</td>
-           <td class="border px-4 py-2 font-semibold">
-             ${Math.round(calculateCaloriesAndPercentage(-2).calories)} (${calculateCaloriesAndPercentage(-2).percentage.toFixed(2)}%)
-           </td>
-         </tr>
+             <tr>
+            <td class="border px-4 py-2">
+              <div>Mild Weight Loss</div>
+              <div class="text-sm text-gray-600">(0.5 lb/week)</div>
+            </td>
+            <td class="border px-4 py-2">
+              <div class="font-semibold text-lg">${Math.round(calculateCaloriesAndPercentage(-0.5).calories)}</div>
+              <div class="text-sm text-gray-600">(${calculateCaloriesAndPercentage(-0.5).percentage.toFixed(2)}%)</div>
+              <div class="text-sm text-gray-600">Calories/day</div>
+            </td>
+          </tr>
        `;
      } else if (window.goal === 'gain') {
        return `
