@@ -55,97 +55,11 @@ function calculateDailyCalories() {
     extra_active: 1.9
   };
   const adjustedBMR = BMR * activityMultipliers[activity];
-  const goalCalories = {
-    lose: -500,
-    maintain: 0,
-    gain: 500
-  };
-  return adjustedBMR + goalCalories[goal];
+  
+  return adjustedBMR;
 }
 
-function displayResults() {
-  const proteinIntake = calculateDailyProtein();
-  const dailyCalories = calculateDailyCalories();
-  const maintenanceCalories = dailyCalories;
 
-  const calculateCaloriesAndPercentage = (lbsPerWeek) => {
-    const caloriesPerLb = 3500;
-    const calories = dailyCalories + (lbsPerWeek * caloriesPerLb) / 7;
-    const percentage = (calories / maintenanceCalories) * 100;
-    return { calories, percentage };
-  };
-
-  const goalRows = () => {
-    if (window.goal === 'lose') {
-      return `
-        <tr>
-          <td class="border px-4 py-2">Mild Weight Loss (0.5 lb/week)</td>
-          <td class="border px-4 py-2 font-semibold">
-            ${calculateCaloriesAndPercentage(-0.5).calories.toFixed(2)} (${calculateCaloriesAndPercentage(-0.5).percentage.toFixed(2)}%)
-          </td>
-        </tr>
-        <tr>
-          <td class="border px-4 py-2">Weight Loss (1 lb/week)</td>
-          <td class="border px-4 py-2 font-semibold">
-            ${calculateCaloriesAndPercentage(-1).calories.toFixed(2)} (${calculateCaloriesAndPercentage(-1).percentage.toFixed(2)}%)
-          </td>
-        </tr>
-        <tr>
-          <td class="border px-4 py-2">Extreme Weight Loss (2 lb/week)</td>
-          <td class="border px-4 py-2 font-semibold">
-            ${calculateCaloriesAndPercentage(-2).calories.toFixed(2)} (${calculateCaloriesAndPercentage(-2).percentage.toFixed(2)}%)
-          </td>
-        </tr>
-      `;
-    } else if (window.goal === 'gain') {
-      return `
-        <tr>
-          <td class="border px-4 py-2">Mild Weight Gain (0.5 lb/week)</td>
-          <td class="border px-4 py-2 font-semibold">
-            ${calculateCaloriesAndPercentage(0.5).calories.toFixed(2)} (${calculateCaloriesAndPercentage(0.5).percentage.toFixed(2)}%)
-          </td>
-        </tr>
-        <tr>
-          <td class="border px-4 py-2">Weight Gain (1 lb/week)</td>
-          <td class="border px-4 py-2 font-semibold">
-            ${calculateCaloriesAndPercentage(1).calories.toFixed(2)} (${calculateCaloriesAndPercentage(1).percentage.toFixed(2)}%)
-          </td>
-        </tr>
-        <tr>
-          <td class="border px-4 py-2">Extreme Weight Gain (2 lb/week)</td>
-          <td class="border px-4 py-2 font-semibold">
-            ${calculateCaloriesAndPercentage(2).calories.toFixed(2)} (${calculateCaloriesAndPercentage(2).percentage.toFixed(2)}%)
-          </td>
-        </tr>
-      `;
-    } else {
-      return '';
-    }
-  };
-
-  const resultsElement = document.getElementById("results");
-  resultsElement.innerHTML = `
-    <h2 class="text-2xl font-bold mb-2">Results</h2>
-    <p>Daily protein intake: <strong>${proteinIntake.toFixed(2)} grams</strong></p>
-    <table class="w-full table-auto">
-      <thead>
-        <tr>
-          <th class="border px-4 py-2">Goal</th>
-          <th class="border px-4 py-2">Calories</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="border px-4 py-2">Maintenance</td>
-          <td class="border px-4 py-2 font-semibold">
-            <span style="color: gray;">${maintenanceCalories.toFixed(2)} (100%)</span>
-          </td>
-        </tr>
-        ${goalRows()}
-      </tbody>
-    </table>
-  `;
-}
 
 
 
