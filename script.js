@@ -1,3 +1,14 @@
+document.getElementById("protein-calorie-btn").addEventListener("click", () => {
+    document.getElementById("main").style.display = "none";
+    document.getElementById("protein-calorie-calculator").style.display = "block";
+});
+
+document.getElementById("body-weight-planner-btn").addEventListener("click", () => {
+    document.getElementById("main").style.display = "none";
+    document.getElementById("body-weight-planner").style.display = "block";
+});
+
+
 document.getElementById("calculatorForm").addEventListener("submit", (e) => {
   e.preventDefault();
   getUserInput();
@@ -98,3 +109,10 @@ function displayResults() {
     </table>
   `;
 }
+
+
+document.getElementById("bodyWeightPlannerForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    // Get user input, calculate results and display them
+    // Use a similar structure to your existing calculator
+});
