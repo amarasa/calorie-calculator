@@ -116,54 +116,19 @@ document.getElementById("bodyWeightPlannerForm").addEventListener("submit", (e) 
 
     const currentWeight = parseFloat(document.getElementById("currentWeight").value);
     const goalWeight = parseFloat(document.getElementById("goalWeight").value);
-    const age = parseInt(document.getElementById("age").value);
-    const heightFeet = parseFloat(document.getElementById("heightFeet").value);
-    const heightInches = parseFloat(document.getElementById("heightInches").value);
-    const gender = document.getElementById("genderBWP").value;
-    const activity = document.getElementById("activity").value;
+    const gender = document.getElementById("bwpgender").value;
+    const age = parseInt(document.getElementById("bwpage").value);
+    const heightFeet = parseInt(document.getElementById("bwpheightFeet").value);
+    const heightInches = parseInt(document.getElementById("bwpheightInches").value);
+    const activity = document.getElementById("bwpactivity").value;
     const lbsPerWeek = parseFloat(document.getElementById("lbsPerWeek").value);
-    const startDate = new Date(document.getElementById("startDate").value);
+    const startDate = document.getElementById("startDate").value;
 
-    const heightCm = ((heightFeet * 12) + heightInches) * 2.54;
-    const weightKg = currentWeight * 0.453592;
+    const height = heightFeet * 12 + heightInches;
+    const bmr = calculateBMR(gender, age, height, currentWeight);
+    const tdee = calculateTDEE(bmr, activity);
+    const calorieIntakeToReachGoal = calculateCalorieIntakeToReachGoal(tdee, currentWeight, goalWeight, lbsPerWeek);
+    const estimatedEndDate = calculateEstimatedEndDate(startDate, currentWeight, goalWeight, lbsPerWeek);
 
-    let BMR;
-
-    if (gender === "male") {
-        BMR = (10 * weightKg) + (6.25 * heightCm) - (5 * age) + 5;
-    } else {
-        BMR = (10 * weightKg) + (6.25 * heightCm) - (5 * age) - 161;
-    }
-
-    const activityMultiplier = {
-        sedentary: 1.2,
-        light: 1.375,
-        moderate: 1.55,
-        very_active: 1.725,
-        extra_active: 1.9,
-    };
-
-    const TDEE = BMR * activityMultiplier[activity];
-    const dailyCalorieIntake = (goalWeight < currentWeight) ? TDEE - (lbsPerWeek * 500) : TDEE + (lbsPerWeek * 500);
-    const weightDifference = Math.abs(currentWeight - goalWeight);
-    const weeksToReachGoal = weightDifference / lbsPerWeek;
-    const endDate = new Date(startDate.getTime() + (weeksToReachGoal * 7 * 24 * 60 * 60 * 1000));
-    
-    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    const nth = (d) => {
-        if (d > 3 && d < 21) return "th";
-        switch (d % 10) {
-            case 1: return "st";
-            case 2: return "nd";
-            case 3: return "rd";
-            default: return "th";
-        }
-    }
-
-    const formattedEndDate = `${monthNames[endDate.getMonth()]} ${endDate.getDate()}${nth(endDate.getDate())}, ${endDate.getFullYear()}`;
-
-    document.getElementById("bodyWeightPlannerResults").innerHTML = `
-        <p>Daily calorie intake to reach your goal: ${dailyCalorieIntake.toFixed(0)} calories</p>
-        <p>Estimated end date: ${formattedEndDate}</p>
-    `;
+    displayBodyWeightPlannerResults(calorieIntakeToReachGoal, estimatedEndDate);
 });
