@@ -181,9 +181,18 @@ document.getElementById("bodyWeightPlannerForm").addEventListener("submit", (e) 
       return bmr;
     }
 
-    function calculateTDEE(bmr, activityMultiplier) {
-        return Math.round(bmr * parseFloat(activityMultiplier));
+    function calculateTDEE(bmr, activity) {
+      const activityMultipliers = {
+        sedentary: 1.117,
+        light: 1.279,
+        moderate: 1.364,
+        very_active: 1.605,
+        extra_active: 1.768,
+      };
+
+      return Math.round(bmr * activityMultipliers[activity]);
     }
+
 
     
     function calculateCalorieIntakeToReachGoal(tdee, lbsPerWeek, goal) {
