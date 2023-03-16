@@ -51,13 +51,13 @@
                 </select>
               </div>
               <div class="mb-4">
-                <label for="goal" class="block">Goal:</label>
-                <select id="goal" class="w-full mt-1 bg-gray-200 border border-gray-300 rounded py-2 px-3 appearance-none" required>
+                <label for="bwpgainlose" class="block">Goal:</label>
+                <select id="bwpgainlose" class="w-full mt-1 bg-gray-200 border border-gray-300 rounded py-2 px-3 appearance-none" required>
 
-              <option value="lose">Lose weight</option>
-              <option value="maintain">Maintain weight</option>
-              <option value="gain">Gain weight</option>
-            </select>
+                  <option value="lose">Lose weight</option>
+                  <option value="maintain">Maintain weight</option>
+                  <option value="gain">Gain weight</option>
+                </select>
           </div>
           <button type="submit" style="background-color: #0ea2e9; color: #ffffff;" class="font-bold py-2 px-4 rounded mt-4 hover:bg-malibu-600">
             Calculate
@@ -67,63 +67,63 @@
         </div>
 
         <div id="body-weight-planner" style="display: none;">
-    <h1 class="text-3xl font-bold mb-4" style="color: #0287c7">Body Weight Planner</h1>
-    <form id="bodyWeightPlannerForm">
-        <div class="mb-4">
-            <label for="currentWeight" class="block">Current Weight (lbs):</label>
-            <input type="number" id="currentWeight" class="w-full mt-1 bg-gray-200 border border-gray-300 rounded py-2 px-3" required>
-        </div>
-        <div class="mb-4">
-            <label for="goalWeight" class="block">Goal Weight (lbs):</label>
-            <input type="number" id="goalWeight" class="w-full mt-1 bg-gray-200 border border-gray-300 rounded py-2 px-3" required>
-        </div>
-        <div class="mb-4">
-            <label for="bwpgender" class="block">Gender:</label>
-            <select id="bwpgender" class="w-full mt-1 bg-gray-200 border border-gray-300 rounded py-2 px-3 appearance-none" required>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </select>
-        </div>
-        <div class="mb-4">
-            <label for="bwpage" class="block">Age:</label>
-            <input type="number" id="bwpage" class="w-full mt-1 bg-gray-200 border border-gray-300 rounded py-2 px-3" required>
-        </div>
-        <div class="mb-4">
-            <label for="bwpheightFeet" class="block">Height (ft):</label>
-            <input type="number" id="bwpheightFeet" class="w-full mt-1 bg-gray-200 border border-gray-300 rounded py-2 px-3" required>
-        </div>
-        <div class="mb-4">
-            <label for="bwpheightInches" class="block">Height (inches):</label>
-            <input type="number" id="bwpheightInches" class="w-full mt-1 bg-gray-200 border border-gray-300 rounded py-2 px-3" required>
-        </div>
-        <div class="mb-4">
-            <label for="bwpactivity" class="block">Physical activity level:</label>
-            <select id="bwpactivity" class="w-full mt-1 bg-gray-200 border border-gray-300 rounded py-2 px-3 appearance-none" required>
-              <option value="sedentary">Sedentary</option>
-              <option value="light">Lightly active</option>
-                <option value="moderate">Moderately active</option>
-                <option value="very_active">Very active</option>
-                <option value="extra_active">Extra active</option>
-                </select>
+            <h1 class="text-3xl font-bold mb-4" style="color: #0287c7">Body Weight Planner</h1>
+            <form id="bodyWeightPlannerForm">
+                <div class="mb-4">
+                    <label for="currentWeight" class="block">Current Weight (lbs):</label>
+                    <input type="number" id="currentWeight" class="w-full mt-1 bg-gray-200 border border-gray-300 rounded py-2 px-3" required>
                 </div>
-                                <div class="mb-4">
-                    <label for="lbsPerWeek" class="block">LBs to lose per week:</label>
-                    <select id="lbsPerWeek" class="w-full mt-1 bg-gray-200 border border-gray-300 rounded py-2 px-3 appearance-none" required>
-                        <option value="1">1 lb</option>
-                        <option value="2">2 lbs</option>
-                        <option value="3">3 lbs</option>
+                <div class="mb-4">
+                    <label for="goalWeight" class="block">Goal Weight (lbs):</label>
+                    <input type="number" id="goalWeight" class="w-full mt-1 bg-gray-200 border border-gray-300 rounded py-2 px-3" required>
+                </div>
+                <div class="mb-4">
+                    <label for="bwpgender" class="block">Gender:</label>
+                    <select id="bwpgender" class="w-full mt-1 bg-gray-200 border border-gray-300 rounded py-2 px-3 appearance-none" required>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
                     </select>
                 </div>
                 <div class="mb-4">
-                    <label for="startDate" class="block">Starting date:</label>
-                    <input type="date" id="startDate" class="w-full mt-1 bg-gray-200 border border-gray-300 rounded py-2 px-3" required>
+                    <label for="bwpage" class="block">Age:</label>
+                    <input type="number" id="bwpage" class="w-full mt-1 bg-gray-200 border border-gray-300 rounded py-2 px-3" required>
                 </div>
-                <button type="submit" style="background-color: #0ea2e9; color: #ffffff;" class="font-bold py-2 px-4 rounded mt-4 hover:bg-malibu-600">
-                    Calculate
-                </button>
-            </form>
-            <div id="bodyWeightPlannerResults" class="mt-4"></div>
-        </div>
+                <div class="mb-4">
+                    <label for="bwpheightFeet" class="block">Height (ft):</label>
+                    <input type="number" id="bwpheightFeet" class="w-full mt-1 bg-gray-200 border border-gray-300 rounded py-2 px-3" required>
+                </div>
+                <div class="mb-4">
+                    <label for="bwpheightInches" class="block">Height (inches):</label>
+                    <input type="number" id="bwpheightInches" class="w-full mt-1 bg-gray-200 border border-gray-300 rounded py-2 px-3" required>
+                </div>
+                <div class="mb-4">
+                    <label for="bwpactivity" class="block">Physical activity level:</label>
+                    <select id="bwpactivity" class="w-full mt-1 bg-gray-200 border border-gray-300 rounded py-2 px-3 appearance-none" required>
+                      <option value="sedentary">Sedentary</option>
+                      <option value="light">Lightly active</option>
+                        <option value="moderate">Moderately active</option>
+                        <option value="very_active">Very active</option>
+                        <option value="extra_active">Extra active</option>
+                        </select>
+                        </div>
+                                        <div class="mb-4">
+                            <label for="lbsPerWeek" class="block">LBs to lose per week:</label>
+                            <select id="lbsPerWeek" class="w-full mt-1 bg-gray-200 border border-gray-300 rounded py-2 px-3 appearance-none" required>
+                                <option value="1">1 lb</option>
+                                <option value="2">2 lbs</option>
+                                <option value="3">3 lbs</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label for="startDate" class="block">Starting date:</label>
+                            <input type="date" id="startDate" class="w-full mt-1 bg-gray-200 border border-gray-300 rounded py-2 px-3" required>
+                        </div>
+                        <button type="submit" style="background-color: #0ea2e9; color: #ffffff;" class="font-bold py-2 px-4 rounded mt-4 hover:bg-malibu-600">
+                            Calculate
+                        </button>
+                    </form>
+                    <div id="bodyWeightPlannerResults" class="mt-4"></div>
+                </div>
 
 
 
