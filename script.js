@@ -15,13 +15,20 @@ function getUserInput() {
 }
 
 function calculateDailyProtein() {
-  const proteinFactor = 0.8;
-  console.log('pFactor', proteinFactor);
-  
-  console.log('weight', window.weight);
-  console.log('results', window.weight * proteinFactor);
-  return window.weight * proteinFactor;
+  const proteinFactors = {
+    sedentary: 0.8,
+    light: 1.0,
+    moderate: 1.2,
+    very_active: 1.5,
+    extra_active: 1.8,
+  };
+
+  const proteinPerPound = proteinFactors[activity];
+  const proteinIntake = window.weight * proteinPerPound;
+
+  return proteinIntake;
 }
+
 
 function calculateDailyCalories() {
   const weightInKg = window.weight * 0.453592; // Convert lbs to kg
