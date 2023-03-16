@@ -52,7 +52,7 @@ function calculateDailyCalories() {
       light: 1.375,
       moderate: 1.55,
       very_active: 1.725,
-      extra_active: 2.0
+      extra_active: 1.9
     };
 
   const adjustedBMR = BMR * activityMultipliers[activity];
